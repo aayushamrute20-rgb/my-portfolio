@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aayush Amrute — Portfolio</title>
+  <meta name="description" content="Portfolio of Aayush Amrute — Electronics Engineering Student" />
+  <link rel="stylesheet" href="style-1.css" />
+</head>
+<body>
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <div class="profile-img-placeholder">AA</div>
+      <div class="sidebar-name">Aayush Amrute</div>
+      <div class="social-icons">
+        <a href="#" title="Twitter">tw</a>
+        <a href="#" title="Facebook">fb</a>
+        <a href="#" title="Instagram">ig</a>
+        <a href="#" title="LinkedIn">in</a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#" class="active" onclick="showPage('home',this)"><span class="nav-icon">🏠</span> Home</a></li>
+        <li><a href="#" onclick="showPage('about',this)"><span class="nav-icon">👤</span> About</a></li>
+        <li><a href="#" onclick="showPage('resume',this)"><span class="nav-icon">📄</span> Resume</a></li>
+        <li><a href="#" onclick="showPage('facts',this)"><span class="nav-icon">📊</span> Facts</a></li>
+        <li><a href="#" onclick="showPage('projects',this)"><span class="nav-icon">💼</span> Projects</a></li>
+        <li><a href="#" onclick="showPage('achievements',this)"><span class="nav-icon">🏆</span> Achievements</a></li>
+        <li><a href="#" onclick="showPage('contact',this)"><span class="nav-icon">✉️</span> Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      © Copyright <strong>Aayush's Portfolio</strong><br/>
+      Designed by <a href="#">Aayush</a>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main class="main">
+
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="home-hero">
+        <p class="home-greeting">Welcome to my portfolio</p>
+        <h1 class="home-name">Aayush Amrute</h1>
+        <p class="home-role">Electronics Engineering Student &amp; Developer</p>
+        <p class="home-desc">
+          Passionate about building things — from circuits to code. I enjoy solving real-world problems through technology, with a strong foundation in electronics and a growing skill set in software development.
+        </p>
+        <div class="home-btns">
+          <a href="#" class="btn btn-primary" onclick="showPage('projects', document.querySelector('[onclick*=projects]'))">View Projects</a>
+          <a href="#" class="btn btn-outline" onclick="showPage('contact', document.querySelector('[onclick*=contact]'))">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div>
+            <div class="stat-num">50+</div>
+            <div class="stat-name">Networking</div>
+            <div class="stat-sub">Connections made</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📋</div>
+          <div>
+            <div class="stat-num">8</div>
+            <div class="stat-name">Projects</div>
+            <div class="stat-sub">Completed &amp; ongoing</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📈</div>
+          <div>
+            <div class="stat-num">5</div>
+            <div class="stat-name">Skills</div>
+            <div class="stat-sub">And growing</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏰</div>
+          <div>
+            <div class="stat-num">200+</div>
+            <div class="stat-name">Hours</div>
+            <div class="stat-sub">Hard work logged</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">What I Do</h2>
+        <div class="section-underline"></div>
+        <p style="color:#555;font-size:.92rem;line-height:1.8;max-width:680px;">
+          I'm currently pursuing my Electronics Engineering degree, where I work on embedded systems, circuit design, and digital electronics. Alongside my core studies, I've developed skills in Python, SQL, HTML, and CSS — allowing me to bridge hardware thinking with software solutions.
+        </p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page">
+      <h2 class="section-title">About Me</h2>
+      <div class="section-underline"></div>
+      <p class="section-subtitle">
+        A dedicated electronics engineering student with a curiosity for both hardware and software. I believe in learning by doing and am always working on something new.
+      </p>
+
+      <div class="about-grid">
+        <div class="card about-info">
+          <p>
+            Hi! I'm Aayush Amrute, currently pursuing my Bachelor's in Electronics Engineering. I have a strong interest in embedded systems, IoT, and web technologies.
+          </p>
+          <p>
+            My journey started with circuit boards and microcontrollers, but I quickly discovered a passion for programming as well. I enjoy the challenge of combining hardware and software to build complete, functional systems.
+          </p>
+          <p>
+            I'm always eager to learn new technologies, collaborate on interesting projects, and contribute to the tech community.
+          </p>
+          <ul class="info-list">
+            <li><strong>Degree:</strong> Electronics Engineering</li>
+            <li><strong>Status:</strong> Pursuing (Current)</li>
+            <li><strong>Location:</strong> India</li>
+            <li><strong>Languages:</strong> English, Hindi, Marathi</li>
+            <li><strong>Interests:</strong> IoT, Web Dev, Robotics</li>
+          </ul>
+        </div>
+        <div class="card interest-card">
+          <h3>Areas of Interest</h3>
+          <div class="interest-tags">
+            <span class="tag">Electronics</span>
+            <span class="tag">Embedded Systems</span>
+            <span class="tag">IoT</span>
+            <span class="tag">Python</span>
+            <span class="tag">Web Development</span>
+            <span class="tag">Robotics</span>
+            <span class="tag">Circuit Design</span>
+            <span class="tag">SQL / Databases</span>
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Open Source</span>
+          </div>
+          <br/>
+          <h3>Soft Skills</h3>
+          <div class="interest-tags">
+            <span class="tag">Team Collaboration</span>
+            <span class="tag">Communication</span>
+            <span class="tag">Critical Thinking</span>
+            <span class="tag">Time Management</span>
+            <span class="tag">Adaptability</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume" class="page">
+      <h2 class="section-title">Resume</h2>
+      <div class="section-underline"></div>
+      <p class="resume-intro">
+        Dedicated electronics engineering student committed to academic excellence, with a passion for learning and a strong drive to succeed. Possesses excellent communication and teamwork skills, eager to contribute positively to the learning community.
+      </p>
+
+      <div class="resume-grid">
+        <div class="card resume-block">
+          <h3>Summary</h3>
+
+          <div class="timeline-item">
+            <div class="timeline-title">Aayush Amrute</div>
+            <div class="timeline-org">Electronics Engineering Student</div>
+            <div class="timeline-desc">
+              <ul>
+                <li>Passionate about electronics, embedded systems, and software</li>
+                <li>Experienced with Python, SQL, HTML &amp; CSS</li>
+                <li>Strong problem-solving and analytical skills</li>
+                <li>Eager to apply academic knowledge to real-world challenges</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.5rem;">Education</h3>
+
+          <div class="timeline-item">
+            <span class="timeline-period">2023 — Present</span>
+            <div class="timeline-title">Bachelor of Electronics Engineering</div>
+            <div class="timeline-org">India</div>
+            <div class="timeline-desc">
+              <ul>
+                <li>Core subjects: Circuits, Signals, Embedded Systems</li>
+                <li>Practical labs in microcontrollers &amp; PCB design</li>
+                <li>Active participant in technical events and workshops</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-period">2021 — 2023</span>
+            <div class="timeline-title">Higher Secondary Education (Science)</div>
+            <div class="timeline-org">India</div>
+            <div class="timeline-desc">
+              Completed Class XII with Physics, Chemistry, and Mathematics. Developed a strong foundation for engineering studies.
+            </div>
+          </div>
+        </div>
+
+        <div class="card resume-block">
+          <h3>Degree &amp; Certifications</h3>
+
+          <div class="timeline-item">
+            <span class="timeline-period">2023 — Present</span>
+            <div class="timeline-title">Undergraduate — Electronics Engineering</div>
+            <div class="timeline-org">India</div>
+            <div class="timeline-desc">
+              <ul>
+                <li>First year: foundational electronics and programming</li>
+                <li>Team projects in circuit simulation and basic IoT</li>
+                <li>Building meaningful connections with peers and mentors</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-period">Future</span>
+            <div class="timeline-title">Post Graduation</div>
+            <div class="timeline-org">Aspiration</div>
+            <div class="timeline-desc">
+              Planning to pursue specialisation in Embedded Systems or VLSI design, with potential research focus on IoT and smart systems.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-period">Ongoing</span>
+            <div class="timeline-title">Online Certifications</div>
+            <div class="timeline-org">Various Platforms</div>
+            <div class="timeline-desc">
+              <ul>
+                <li>Python Essentials — Cisco / NPTEL</li>
+                <li>SQL for Data Analysis</li>
+                <li>HTML &amp; CSS Web Development</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACTS / SKILLS -->
+    <section id="facts" class="page">
+      <h2 class="section-title">Facts</h2>
+      <div class="section-underline"></div>
+      <p class="section-subtitle">It doesn't make any sense if there are no facts or figures backing up your claims.</p>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div>
+            <div class="stat-num">50+</div>
+            <div class="stat-name">Networking</div>
+            <div class="stat-sub">Exponential</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📋</div>
+          <div>
+            <div class="stat-num">8</div>
+            <div class="stat-name">Projects</div>
+            <div class="stat-sub">Completed &amp; more to go</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📈</div>
+          <div>
+            <div class="stat-num">5</div>
+            <div class="stat-name">Skills learned</div>
+            <div class="stat-sub">Every time one more gets added</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏰</div>
+          <div>
+            <div class="stat-num">200+</div>
+            <div class="stat-name">Hard Working hours</div>
+            <div class="stat-sub">The number continues to grow</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card skill-section">
+        <h2 class="section-title">Skills</h2>
+        <div class="section-underline"></div>
+        <p class="section-subtitle">It is skills that make us different from the crowd and make us unique. Acquiring skills means adding an unfair advantage to ourselves.</p>
+
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-header"><span>HTML</span><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>Python</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>CSS</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>SQL</span><span>75%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>Electronics / Circuit Design</span><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>Embedded Systems</span><span>70%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="page">
+      <h2 class="section-title">Projects</h2>
+      <div class="section-underline"></div>
+      <p class="section-subtitle">A selection of projects I've worked on — combining electronics knowledge with programming skills.</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-thumb c1">🌡️</div>
+          <div class="project-body">
+            <div class="project-title">Temperature Monitor</div>
+            <p class="project-desc">An IoT-based temperature and humidity monitoring system using a microcontroller and Python for data logging and visualization.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">IoT</span>
+              <span class="project-tag">Electronics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb c2">🗄️</div>
+          <div class="project-body">
+            <div class="project-title">Student Database System</div>
+            <p class="project-desc">A simple CRUD-based student record management system built with Python and SQL for storing and querying academic data.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">SQL</span>
+              <span class="project-tag">Database</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb c3">🌐</div>
+          <div class="project-body">
+            <div class="project-title">Personal Portfolio Website</div>
+            <p class="project-desc">This very portfolio! Designed and built from scratch using HTML and CSS, showcasing my projects, resume, and contact information.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">Web Design</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb c1">🤖</div>
+          <div class="project-body">
+            <div class="project-title">Line Following Robot</div>
+            <p class="project-desc">Designed and built a line-following robot as part of a college project, using IR sensors and a motor driver circuit.</p>
+            <div class="project-tags">
+              <span class="project-tag">Electronics</span>
+              <span class="project-tag">Robotics</span>
+              <span class="project-tag">C</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb c2">📊</div>
+          <div class="project-body">
+            <div class="project-title">Data Analysis with Python</div>
+            <p class="project-desc">Exploratory data analysis project using Python (pandas, matplotlib) to derive insights from a sample dataset.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Data Analysis</span>
+              <span class="project-tag">SQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb c3">💡</div>
+          <div class="project-body">
+            <div class="project-title">Smart LED Controller</div>
+            <p class="project-desc">A PWM-based LED brightness controller with a web interface built using HTML/CSS for remote control via browser.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">Electronics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="page">
+      <h2 class="section-title">Achievements</h2>
+      <div class="section-underline"></div>
+      <p class="section-subtitle">
+        My portfolio showcases my outstanding achievements, both academically and professionally. Each entry highlights my commitment to excellence and my ability to overcome challenges.
+      </p>
+
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <div class="achievement-icon">🐍</div>
+          <div class="achievement-title">Python Essentials 1</div>
+          <div class="achievement-desc">Successfully completed CISCO course and certification of "Python_Essentials_1".</div>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">🐍</div>
+          <div class="achievement-title">Python Essentials 2</div>
+          <div class="achievement-desc">Successfully completed CISCO course and certification of "Python_Essentials_2".</div>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">💻</div>
+          <div class="achievement-title">C Language</div>
+          <div class="achievement-desc">Completed C Language course with a solid understanding of programming fundamentals.</div>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">🤖</div>
+          <div class="achievement-title">Robotics Workshop</div>
+          <div class="achievement-desc">Successfully completed a hands-on robotics workshop covering motor control and sensor integration.</div>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">🚀</div>
+          <div class="achievement-title">Entrepreneurship</div>
+          <div class="achievement-desc">Gained knowledge about Entrepreneurship through a workshop conducted by GDIOT.</div>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">🏛️</div>
+          <div class="achievement-title">IIT Bombay Techfest</div>
+          <div class="achievement-desc">Attended Asia's biggest techfest and participated in various technical and non-technical events.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page">
+      <h2 class="section-title">Contact</h2>
+      <div class="section-underline"></div>
+      <p class="section-subtitle">You can contact me via the following links or send me a message directly.</p>
+
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <h3>Contact Information</h3>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <div class="contact-item-label">Location</div>
+              <div class="contact-item-value">India</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">aayush@example.com</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📱</div>
+            <div>
+              <div class="contact-item-label">Call</div>
+              <div class="contact-item-value">+91 XXXXXXXXXX</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">in</div>
+            <div>
+              <div class="contact-item-label">LinkedIn</div>
+              <div class="contact-item-value"><a href="#" style="color:#1da1f2;">linkedin.com/in/aayush</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <h3>Send Me a Message</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="John Doe" />
+            </div>
+            <div class="form-group">
+              <label>Your Email</label>
+              <input type="email" placeholder="john@example.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" placeholder="Project / Collaboration" />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Write your message here..."></textarea>
+          </div>
+          <button class="btn-send">Send Message</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    // Page navigation
+    function showPage(id, linkEl) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      if (linkEl) linkEl.classList.add('active');
+      // Animate skill bars when facts page opens
+      if (id === 'facts') animateSkillBars();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return false;
+    }
+
+    // Skill bar animation
+    function animateSkillBars() {
+      document.querySelectorAll('.skill-fill').forEach(bar => {
+        const w = bar.getAttribute('data-width');
+        setTimeout(() => { bar.style.width = w + '%'; }, 100);
+      });
+    }
+
+    // Prevent default on nav links
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+      link.addEventListener('click', e => e.preventDefault());
+    });
+  </script>
+
+</body>
+</html>
