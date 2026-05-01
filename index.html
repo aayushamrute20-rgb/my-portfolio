@@ -538,14 +538,14 @@
 
   <script>
   /* =====================================================
-     LIVING PORTFOLIO — full interaction layer
+     LIVING PORTFOLIO — smooth, unified interaction layer
      ===================================================== */
 
   // ── 1. PARTICLE CANVAS ──────────────────────────────
   (function () {
     const canvas = document.getElementById('particle-canvas');
     const ctx    = canvas.getContext('2d');
-    let W, H, particles = [];
+    let W, H;
 
     function resize() {
       W = canvas.width  = window.innerWidth;
@@ -554,64 +554,62 @@
     resize();
     window.addEventListener('resize', resize);
 
-    const COUNT = 72;
-    const PRIMARY = [0, 113, 227];
+    const COUNT  = 60;
+    const COLOR  = [0, 113, 227];
+    const LINK_D = 100;   // max distance for connection lines
 
-    function rand(a, b) { return a + Math.random() * (b - a); }
+    const particles = Array.from({ length: COUNT }, () => ({
+      x:  Math.random() * window.innerWidth,
+      y:  Math.random() * window.innerHeight,
+      r:  0.8 + Math.random() * 1.6,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: (Math.random() - 0.5) * 0.15,
+      a:  0.12 + Math.random() * 0.38,
+      t:  Math.random() * Math.PI * 2,   // phase for breathing
+      ts: 0.008 + Math.random() * 0.014, // breath speed
+    }));
 
-    for (let i = 0; i < COUNT; i++) {
-      particles.push({
-        x: rand(0, window.innerWidth),
-        y: rand(0, window.innerHeight),
-        r: rand(0.8, 2.2),
-        vx: rand(-0.18, 0.18),
-        vy: rand(-0.12, 0.12),
-        alpha: rand(0.15, 0.55),
-        pulse: rand(0, Math.PI * 2),
-        pulseSpeed: rand(0.008, 0.022)
-      });
-    }
-
-    function drawParticles() {
+    function draw() {
       ctx.clearRect(0, 0, W, H);
 
-      // Draw connecting lines between nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
+      // Connection lines
+      for (let i = 0; i < COUNT; i++) {
+        for (let j = i + 1; j < COUNT; j++) {
+          const dx   = particles[i].x - particles[j].x;
+          const dy   = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 110) {
+          if (dist < LINK_D) {
+            const op = 0.06 * (1 - dist / LINK_D);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${PRIMARY[0]},${PRIMARY[1]},${PRIMARY[2]},${0.07 * (1 - dist / 110)})`;
-            ctx.lineWidth = 0.6;
+            ctx.strokeStyle = `rgba(${COLOR},${op})`;
+            ctx.lineWidth   = 0.5;
             ctx.stroke();
           }
         }
       }
 
-      // Draw particles
+      // Dots
       particles.forEach(p => {
-        p.pulse += p.pulseSpeed;
-        const breathe = Math.sin(p.pulse) * 0.4 + 1;
+        p.t  += p.ts;
+        p.x  += p.vx;
+        p.y  += p.vy;
+        if (p.x < -8) p.x = W + 8;
+        if (p.x > W + 8) p.x = -8;
+        if (p.y < -8) p.y = H + 8;
+        if (p.y > H + 8) p.y = -8;
+
+        const breathe = 1 + Math.sin(p.t) * 0.3;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r * breathe, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${PRIMARY[0]},${PRIMARY[1]},${PRIMARY[2]},${p.alpha})`;
+        ctx.fillStyle = `rgba(${COLOR},${p.a})`;
         ctx.fill();
-
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < -10) p.x = W + 10;
-        if (p.x > W + 10) p.x = -10;
-        if (p.y < -10) p.y = H + 10;
-        if (p.y > H + 10) p.y = -10;
       });
 
-      requestAnimationFrame(drawParticles);
+      requestAnimationFrame(draw);
     }
-    drawParticles();
+    draw();
   })();
 
 
@@ -620,198 +618,205 @@
     const dot  = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
     const blob = document.getElementById('cursor-blob');
+    if (!dot) return;
 
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    let rx = mx, ry = my;
+    let mx = -200, my = -200;  // start offscreen
+    let rx = -200, ry = -200;  // ring lags
 
     document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left  = mx + 'px';
-      dot.style.top   = my + 'px';
+      mx = e.clientX;
+      my = e.clientY;
+      // Dot follows instantly via style
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
+      // Blob follows smoothly via CSS transition
       blob.style.left = mx + 'px';
       blob.style.top  = my + 'px';
     });
 
-    // Ring lags behind dot for organic feel
-    (function animRing() {
-      rx += (mx - rx) * 0.10;
-      ry += (my - ry) * 0.10;
+    // Ring lags with lerp for organic feel
+    let rafId;
+    const LERP = 0.09; // lower = smoother lag
+
+    function animRing() {
+      rx += (mx - rx) * LERP;
+      ry += (my - ry) * LERP;
       ring.style.left = rx + 'px';
       ring.style.top  = ry + 'px';
-      requestAnimationFrame(animRing);
-    })();
+      rafId = requestAnimationFrame(animRing);
+    }
+    animRing();
 
-    // Hide native cursor
     document.documentElement.style.cursor = 'none';
   })();
 
 
   // ── 3. SCROLL REVEAL ────────────────────────────────
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) {
+        target.classList.add('visible');
+        revealObs.unobserve(target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
 
   // ── 4. ANIMATED COUNTERS ────────────────────────────
-  function animateCounter(el) {
-    const target = parseInt(el.textContent.replace('+', '').replace(',', ''));
-    const hasPlus = el.textContent.includes('+');
-    const duration = 1200;
-    const start = performance.now();
+  function countUp(el) {
+    const raw    = el.textContent.trim();
+    const target = parseInt(raw.replace(/\D/g, ''), 10);
+    const suffix = raw.replace(/[0-9]/g, '');
+    const dur    = 1100;
+    const start  = performance.now();
 
+    // Ease out cubic
     function tick(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(eased * target);
-      el.textContent = current + (hasPlus ? '+' : '');
-      if (progress < 1) requestAnimationFrame(tick);
+      const t = Math.min((now - start) / dur, 1);
+      const v = Math.round((1 - Math.pow(1 - t, 3)) * target);
+      el.textContent = v + suffix;
+      if (t < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   }
 
-  const counterObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      }
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) { countUp(target); counterObs.unobserve(target); }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.6 });
 
-  document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
+  document.querySelectorAll('.stat-num').forEach(el => counterObs.observe(el));
 
 
   // ── 5. SKILL BAR ANIMATION ──────────────────────────
-  let skillsAnimated = false;
+  let skillsDone = false;
 
-  function animateSkillBars() {
+  function fillBars() {
+    if (skillsDone) return;
+    skillsDone = true;
     document.querySelectorAll('.skill-fill').forEach((bar, i) => {
       setTimeout(() => {
-        bar.style.width = bar.getAttribute('data-width') + '%';
-      }, i * 80);
+        bar.style.width = (bar.dataset.width || '0') + '%';
+      }, i * 90);
     });
   }
 
 
-  // ── 6. SCROLL SPY + SECTION OBSERVER ────────────────
-  const sections = document.querySelectorAll('.page');
+  // ── 6. SCROLL SPY ───────────────────────────────────
   const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-
-        if (id === 'facts' && !skillsAnimated) {
-          skillsAnimated = true;
-          setTimeout(animateSkillBars, 200);
-        }
-
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-        });
-      }
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      if (target.id === 'facts') fillBars();
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + target.id);
+      });
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.3 });
 
-  sections.forEach(s => sectionObserver.observe(s));
+  document.querySelectorAll('.page').forEach(s => sectionObs.observe(s));
 
 
   // ── 7. CARD 3-D TILT ────────────────────────────────
-  document.querySelectorAll('.card, .project-card, .achievement-card, .stat-card').forEach(card => {
+  // Gentle tilt — max ±4deg, smooth restore
+  document.querySelectorAll('.card, .project-card, .achievement-card').forEach(card => {
+    const MAX = 4;
+
     card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const cx = rect.left + rect.width  / 2;
-      const cy = rect.top  + rect.height / 2;
-      const dx = (e.clientX - cx) / (rect.width  / 2);
-      const dy = (e.clientY - cy) / (rect.height / 2);
-      const tiltX = dy * -5;
-      const tiltY = dx *  5;
-      card.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-3px)`;
+      const r  = card.getBoundingClientRect();
+      const nx = (e.clientX - r.left)  / r.width  - 0.5; // -0.5 to 0.5
+      const ny = (e.clientY - r.top)   / r.height - 0.5;
+      card.style.transition = 'transform 0.08s linear, box-shadow 0.3s ease, border-color 0.3s ease';
+      card.style.transform  = `perspective(700px) rotateX(${-ny * MAX}deg) rotateY(${nx * MAX}deg) translateY(-3px)`;
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      card.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1)';
-      setTimeout(() => { card.style.transition = ''; }, 500);
+      card.style.transition = 'transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s ease, border-color 0.55s ease';
+      card.style.transform  = '';
     });
   });
 
 
   // ── 8. MAGNETIC BUTTONS ─────────────────────────────
-  document.querySelectorAll('.btn, .btn-send, .btn-primary, .btn-outline').forEach(btn => {
+  document.querySelectorAll('.btn, .btn-send').forEach(btn => {
+    const PULL = 0.25;
+
     btn.addEventListener('mousemove', e => {
-      const rect = btn.getBoundingClientRect();
-      const dx = e.clientX - (rect.left + rect.width  / 2);
-      const dy = e.clientY - (rect.top  + rect.height / 2);
-      btn.style.transform = `translate(${dx * 0.22}px, ${dy * 0.22}px)`;
+      const r  = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width  / 2);
+      const dy = e.clientY - (r.top  + r.height / 2);
+      btn.style.transition = 'transform 0.06s linear';
+      btn.style.transform  = `translate(${dx * PULL}px, ${dy * PULL}px)`;
     });
 
     btn.addEventListener('mouseleave', () => {
-      btn.style.transform = '';
-      btn.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)';
-      setTimeout(() => { btn.style.transition = ''; }, 400);
+      btn.style.transition = 'transform 0.45s cubic-bezier(0.16,1,0.3,1)';
+      btn.style.transform  = '';
     });
   });
 
 
-  // ── 9. SCROLL TO TOP ────────────────────────────────
-  document.querySelector('.scroll-top')
-    .addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-
-  // ── 10. SIDEBAR NAV SMOOTH SCROLL ───────────────────
-  document.querySelectorAll('.sidebar-nav a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
+  // ── 9. SMOOTH SCROLL for nav links ──────────────────
+  document.querySelectorAll('.sidebar-nav a, .btn[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
 
 
-  // ── 11. TYPING EFFECT on home greeting ──────────────
+  // ── 10. TYPING EFFECT ───────────────────────────────
   (function () {
     const el = document.querySelector('.home-greeting');
     if (!el) return;
+
     const phrases = [
       'Welcome to my portfolio',
       'Electronics Engineer',
       'Python Developer',
       'Always building something',
     ];
-    let pi = 0, ci = 0, deleting = false;
-    el.style.cssText += 'white-space:nowrap; overflow:hidden;';
+
+    let pi = 0, ci = 0, deleting = false, paused = false;
 
     function type() {
+      if (paused) return;
       const phrase = phrases[pi];
+
       if (!deleting) {
-        el.textContent = phrase.slice(0, ++ci);
+        ci++;
+        el.textContent = phrase.slice(0, ci);
         if (ci === phrase.length) {
           deleting = true;
-          setTimeout(type, 1800);
+          paused = true;
+          setTimeout(() => { paused = false; type(); }, 2000);
           return;
         }
+        setTimeout(type, 68);
       } else {
-        el.textContent = phrase.slice(0, --ci);
+        ci--;
+        el.textContent = phrase.slice(0, ci);
         if (ci === 0) {
           deleting = false;
           pi = (pi + 1) % phrases.length;
+          paused = true;
+          setTimeout(() => { paused = false; type(); }, 320);
+          return;
         }
+        setTimeout(type, 38);
       }
-      setTimeout(type, deleting ? 42 : 72);
     }
     type();
   })();
+
+
+  // ── 11. SCROLL TO TOP ───────────────────────────────
+  document.querySelector('.scroll-top')
+    ?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   </script>
 
