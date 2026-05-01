@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aayush Amrute — Portfolio</title>
   <meta name="description" content="Portfolio of Aayush Amrute — Electronics Engineering Student" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-blob"></div>
+
+  <!-- Particle canvas -->
+  <canvas id="particle-canvas"></canvas>
 
   <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar">
@@ -24,13 +34,13 @@
 
     <nav class="sidebar-nav">
       <ul>
-        <li><a href="#" class="active" onclick="showPage('home',this)"><span class="nav-icon">🏠</span> Home</a></li>
-        <li><a href="#" onclick="showPage('about',this)"><span class="nav-icon">👤</span> About</a></li>
-        <li><a href="#" onclick="showPage('resume',this)"><span class="nav-icon">📄</span> Resume</a></li>
-        <li><a href="#" onclick="showPage('facts',this)"><span class="nav-icon">📊</span> Facts</a></li>
-        <li><a href="#" onclick="showPage('projects',this)"><span class="nav-icon">💼</span> Projects</a></li>
-        <li><a href="#" onclick="showPage('achievements',this)"><span class="nav-icon">🏆</span> Achievements</a></li>
-        <li><a href="#" onclick="showPage('contact',this)"><span class="nav-icon">✉️</span> Contact</a></li>
+        <li><a href="#home"         class="active"><span class="nav-icon">🏠</span> Home</a></li>
+        <li><a href="#about"               ><span class="nav-icon">👤</span> About</a></li>
+        <li><a href="#resume"              ><span class="nav-icon">📄</span> Resume</a></li>
+        <li><a href="#facts"               ><span class="nav-icon">📊</span> Facts</a></li>
+        <li><a href="#projects"            ><span class="nav-icon">💼</span> Projects</a></li>
+        <li><a href="#achievements"        ><span class="nav-icon">🏆</span> Achievements</a></li>
+        <li><a href="#contact"             ><span class="nav-icon">✉️</span> Contact</a></li>
       </ul>
     </nav>
 
@@ -46,6 +56,8 @@
     <!-- HOME -->
     <section id="home" class="page active">
       <div class="home-hero">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
         <p class="home-greeting">Welcome to my portfolio</p>
         <h1 class="home-name">Aayush Amrute</h1>
         <p class="home-role">Electronics Engineering Student &amp; Developer</p>
@@ -53,13 +65,13 @@
           Passionate about building things — from circuits to code. I enjoy solving real-world problems through technology, with a strong foundation in electronics and a growing skill set in software development.
         </p>
         <div class="home-btns">
-          <a href="#" class="btn btn-primary" onclick="showPage('projects', document.querySelector('[onclick*=projects]'))">View Projects</a>
-          <a href="#" class="btn btn-outline" onclick="showPage('contact', document.querySelector('[onclick*=contact]'))">Contact Me</a>
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact"  class="btn btn-outline">Contact Me</a>
         </div>
       </div>
 
       <div class="stats-row">
-        <div class="stat-card">
+        <div class="stat-card reveal reveal-delay-1">
           <div class="stat-icon">👥</div>
           <div>
             <div class="stat-num">50+</div>
@@ -67,7 +79,7 @@
             <div class="stat-sub">Connections made</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal reveal-delay-2">
           <div class="stat-icon">📋</div>
           <div>
             <div class="stat-num">8</div>
@@ -75,7 +87,7 @@
             <div class="stat-sub">Completed &amp; ongoing</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal reveal-delay-3">
           <div class="stat-icon">📈</div>
           <div>
             <div class="stat-num">5</div>
@@ -83,7 +95,7 @@
             <div class="stat-sub">And growing</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal reveal-delay-4">
           <div class="stat-icon">⏰</div>
           <div>
             <div class="stat-num">200+</div>
@@ -94,8 +106,8 @@
       </div>
 
       <div class="card">
-        <h2 class="section-title">What I Do</h2>
-        <div class="section-underline"></div>
+        <h2 class="section-title reveal">What I Do</h2>
+        <div class="section-underline reveal"></div>
         <p style="color:#555;font-size:.92rem;line-height:1.8;max-width:680px;">
           I'm currently pursuing my Electronics Engineering degree, where I work on embedded systems, circuit design, and digital electronics. Alongside my core studies, I've developed skills in Python, SQL, HTML, and CSS — allowing me to bridge hardware thinking with software solutions.
         </p>
@@ -104,14 +116,14 @@
 
     <!-- ABOUT -->
     <section id="about" class="page">
-      <h2 class="section-title">About Me</h2>
-      <div class="section-underline"></div>
-      <p class="section-subtitle">
+      <h2 class="section-title reveal">About Me</h2>
+      <div class="section-underline reveal"></div>
+      <p class="section-subtitle reveal reveal-delay-1">
         A dedicated electronics engineering student with a curiosity for both hardware and software. I believe in learning by doing and am always working on something new.
       </p>
 
       <div class="about-grid">
-        <div class="card about-info">
+        <div class="card about-info reveal">
           <p>
             Hi! I'm Aayush Amrute, currently pursuing my Bachelor's in Electronics Engineering. I have a strong interest in embedded systems, IoT, and web technologies.
           </p>
@@ -129,7 +141,7 @@
             <li><strong>Interests:</strong> IoT, Web Dev, Robotics</li>
           </ul>
         </div>
-        <div class="card interest-card">
+        <div class="card interest-card reveal reveal-delay-2">
           <h3>Areas of Interest</h3>
           <div class="interest-tags">
             <span class="tag">Electronics</span>
@@ -158,17 +170,17 @@
 
     <!-- RESUME -->
     <section id="resume" class="page">
-      <h2 class="section-title">Resume</h2>
-      <div class="section-underline"></div>
-      <p class="resume-intro">
+      <h2 class="section-title reveal">Resume</h2>
+      <div class="section-underline reveal"></div>
+      <p class="resume-intro reveal reveal-delay-1">
         Dedicated electronics engineering student committed to academic excellence, with a passion for learning and a strong drive to succeed. Possesses excellent communication and teamwork skills, eager to contribute positively to the learning community.
       </p>
 
       <div class="resume-grid">
-        <div class="card resume-block">
+        <div class="card resume-block reveal">
           <h3>Summary</h3>
 
-          <div class="timeline-item">
+          <div class="timeline-item reveal">
             <div class="timeline-title">Aayush Amrute</div>
             <div class="timeline-org">Electronics Engineering Student</div>
             <div class="timeline-desc">
@@ -183,7 +195,7 @@
 
           <h3 style="margin-top:1.5rem;">Education</h3>
 
-          <div class="timeline-item">
+          <div class="timeline-item reveal">
             <span class="timeline-period">2023 — Present</span>
             <div class="timeline-title">Bachelor of Electronics Engineering</div>
             <div class="timeline-org">India</div>
@@ -196,7 +208,7 @@
             </div>
           </div>
 
-          <div class="timeline-item">
+          <div class="timeline-item reveal">
             <span class="timeline-period">2021 — 2023</span>
             <div class="timeline-title">Higher Secondary Education (Science)</div>
             <div class="timeline-org">India</div>
@@ -206,10 +218,10 @@
           </div>
         </div>
 
-        <div class="card resume-block">
+        <div class="card resume-block reveal reveal-delay-2">
           <h3>Degree &amp; Certifications</h3>
 
-          <div class="timeline-item">
+          <div class="timeline-item reveal">
             <span class="timeline-period">2023 — Present</span>
             <div class="timeline-title">Undergraduate — Electronics Engineering</div>
             <div class="timeline-org">India</div>
@@ -222,7 +234,7 @@
             </div>
           </div>
 
-          <div class="timeline-item">
+          <div class="timeline-item reveal">
             <span class="timeline-period">Future</span>
             <div class="timeline-title">Post Graduation</div>
             <div class="timeline-org">Aspiration</div>
@@ -231,7 +243,7 @@
             </div>
           </div>
 
-          <div class="timeline-item">
+          <div class="timeline-item reveal">
             <span class="timeline-period">Ongoing</span>
             <div class="timeline-title">Online Certifications</div>
             <div class="timeline-org">Various Platforms</div>
@@ -249,12 +261,12 @@
 
     <!-- FACTS / SKILLS -->
     <section id="facts" class="page">
-      <h2 class="section-title">Facts</h2>
-      <div class="section-underline"></div>
-      <p class="section-subtitle">It doesn't make any sense if there are no facts or figures backing up your claims.</p>
+      <h2 class="section-title reveal">Facts</h2>
+      <div class="section-underline reveal"></div>
+      <p class="section-subtitle reveal reveal-delay-1">It doesn't make any sense if there are no facts or figures backing up your claims.</p>
 
       <div class="stats-row">
-        <div class="stat-card">
+        <div class="stat-card reveal reveal-delay-1">
           <div class="stat-icon">👥</div>
           <div>
             <div class="stat-num">50+</div>
@@ -262,7 +274,7 @@
             <div class="stat-sub">Exponential</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal reveal-delay-2">
           <div class="stat-icon">📋</div>
           <div>
             <div class="stat-num">8</div>
@@ -270,7 +282,7 @@
             <div class="stat-sub">Completed &amp; more to go</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal reveal-delay-3">
           <div class="stat-icon">📈</div>
           <div>
             <div class="stat-num">5</div>
@@ -278,7 +290,7 @@
             <div class="stat-sub">Every time one more gets added</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal reveal-delay-4">
           <div class="stat-icon">⏰</div>
           <div>
             <div class="stat-num">200+</div>
@@ -289,9 +301,9 @@
       </div>
 
       <div class="card skill-section">
-        <h2 class="section-title">Skills</h2>
-        <div class="section-underline"></div>
-        <p class="section-subtitle">It is skills that make us different from the crowd and make us unique. Acquiring skills means adding an unfair advantage to ourselves.</p>
+        <h2 class="section-title reveal">Skills</h2>
+        <div class="section-underline reveal"></div>
+        <p class="section-subtitle reveal reveal-delay-1">It is skills that make us different from the crowd and make us unique. Acquiring skills means adding an unfair advantage to ourselves.</p>
 
         <div class="skills-grid">
           <div class="skill-item">
@@ -324,12 +336,12 @@
 
     <!-- PROJECTS -->
     <section id="projects" class="page">
-      <h2 class="section-title">Projects</h2>
-      <div class="section-underline"></div>
-      <p class="section-subtitle">A selection of projects I've worked on — combining electronics knowledge with programming skills.</p>
+      <h2 class="section-title reveal">Projects</h2>
+      <div class="section-underline reveal"></div>
+      <p class="section-subtitle reveal reveal-delay-1">A selection of projects I've worked on — combining electronics knowledge with programming skills.</p>
 
       <div class="projects-grid">
-        <div class="project-card">
+        <div class="project-card reveal">
           <div class="project-thumb c1">🌡️</div>
           <div class="project-body">
             <div class="project-title">Temperature Monitor</div>
@@ -342,7 +354,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card reveal">
           <div class="project-thumb c2">🗄️</div>
           <div class="project-body">
             <div class="project-title">Student Database System</div>
@@ -355,7 +367,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card reveal">
           <div class="project-thumb c3">🌐</div>
           <div class="project-body">
             <div class="project-title">Personal Portfolio Website</div>
@@ -368,7 +380,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card reveal">
           <div class="project-thumb c1">🤖</div>
           <div class="project-body">
             <div class="project-title">Line Following Robot</div>
@@ -381,7 +393,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card reveal">
           <div class="project-thumb c2">📊</div>
           <div class="project-body">
             <div class="project-title">Data Analysis with Python</div>
@@ -394,7 +406,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card reveal">
           <div class="project-thumb c3">💡</div>
           <div class="project-body">
             <div class="project-title">Smart LED Controller</div>
@@ -411,39 +423,39 @@
 
     <!-- ACHIEVEMENTS -->
     <section id="achievements" class="page">
-      <h2 class="section-title">Achievements</h2>
-      <div class="section-underline"></div>
-      <p class="section-subtitle">
+      <h2 class="section-title reveal">Achievements</h2>
+      <div class="section-underline reveal"></div>
+      <p class="section-subtitle reveal reveal-delay-1">
         My portfolio showcases my outstanding achievements, both academically and professionally. Each entry highlights my commitment to excellence and my ability to overcome challenges.
       </p>
 
       <div class="achievements-grid">
-        <div class="achievement-card">
+        <div class="achievement-card reveal">
           <div class="achievement-icon">🐍</div>
           <div class="achievement-title">Python Essentials 1</div>
           <div class="achievement-desc">Successfully completed CISCO course and certification of "Python_Essentials_1".</div>
         </div>
-        <div class="achievement-card">
+        <div class="achievement-card reveal">
           <div class="achievement-icon">🐍</div>
           <div class="achievement-title">Python Essentials 2</div>
           <div class="achievement-desc">Successfully completed CISCO course and certification of "Python_Essentials_2".</div>
         </div>
-        <div class="achievement-card">
+        <div class="achievement-card reveal">
           <div class="achievement-icon">💻</div>
           <div class="achievement-title">C Language</div>
           <div class="achievement-desc">Completed C Language course with a solid understanding of programming fundamentals.</div>
         </div>
-        <div class="achievement-card">
+        <div class="achievement-card reveal">
           <div class="achievement-icon">🤖</div>
           <div class="achievement-title">Robotics Workshop</div>
           <div class="achievement-desc">Successfully completed a hands-on robotics workshop covering motor control and sensor integration.</div>
         </div>
-        <div class="achievement-card">
+        <div class="achievement-card reveal">
           <div class="achievement-icon">🚀</div>
           <div class="achievement-title">Entrepreneurship</div>
           <div class="achievement-desc">Gained knowledge about Entrepreneurship through a workshop conducted by GDIOT.</div>
         </div>
-        <div class="achievement-card">
+        <div class="achievement-card reveal">
           <div class="achievement-icon">🏛️</div>
           <div class="achievement-title">IIT Bombay Techfest</div>
           <div class="achievement-desc">Attended Asia's biggest techfest and participated in various technical and non-technical events.</div>
@@ -453,9 +465,9 @@
 
     <!-- CONTACT -->
     <section id="contact" class="page">
-      <h2 class="section-title">Contact</h2>
-      <div class="section-underline"></div>
-      <p class="section-subtitle">You can contact me via the following links or send me a message directly.</p>
+      <h2 class="section-title reveal">Contact</h2>
+      <div class="section-underline reveal"></div>
+      <p class="section-subtitle reveal reveal-delay-1">You can contact me via the following links or send me a message directly.</p>
 
       <div class="contact-grid">
         <div class="contact-info-card">
@@ -525,30 +537,282 @@
   <button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
   <script>
-    // Page navigation
-    function showPage(id, linkEl) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      if (linkEl) linkEl.classList.add('active');
-      // Animate skill bars when facts page opens
-      if (id === 'facts') animateSkillBars();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return false;
-    }
+  /* =====================================================
+     LIVING PORTFOLIO — full interaction layer
+     ===================================================== */
 
-    // Skill bar animation
-    function animateSkillBars() {
-      document.querySelectorAll('.skill-fill').forEach(bar => {
-        const w = bar.getAttribute('data-width');
-        setTimeout(() => { bar.style.width = w + '%'; }, 100);
+  // ── 1. PARTICLE CANVAS ──────────────────────────────
+  (function () {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const COUNT = 72;
+    const PRIMARY = [0, 113, 227];
+
+    function rand(a, b) { return a + Math.random() * (b - a); }
+
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x: rand(0, window.innerWidth),
+        y: rand(0, window.innerHeight),
+        r: rand(0.8, 2.2),
+        vx: rand(-0.18, 0.18),
+        vy: rand(-0.12, 0.12),
+        alpha: rand(0.15, 0.55),
+        pulse: rand(0, Math.PI * 2),
+        pulseSpeed: rand(0.008, 0.022)
       });
     }
 
-    // Prevent default on nav links
-    document.querySelectorAll('.sidebar-nav a').forEach(link => {
-      link.addEventListener('click', e => e.preventDefault());
+    function drawParticles() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Draw connecting lines between nearby particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(${PRIMARY[0]},${PRIMARY[1]},${PRIMARY[2]},${0.07 * (1 - dist / 110)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles
+      particles.forEach(p => {
+        p.pulse += p.pulseSpeed;
+        const breathe = Math.sin(p.pulse) * 0.4 + 1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * breathe, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${PRIMARY[0]},${PRIMARY[1]},${PRIMARY[2]},${p.alpha})`;
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -10) p.x = W + 10;
+        if (p.x > W + 10) p.x = -10;
+        if (p.y < -10) p.y = H + 10;
+        if (p.y > H + 10) p.y = -10;
+      });
+
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+  })();
+
+
+  // ── 2. CUSTOM CURSOR ────────────────────────────────
+  (function () {
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    const blob = document.getElementById('cursor-blob');
+
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+    let rx = mx, ry = my;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left  = mx + 'px';
+      dot.style.top   = my + 'px';
+      blob.style.left = mx + 'px';
+      blob.style.top  = my + 'px';
     });
+
+    // Ring lags behind dot for organic feel
+    (function animRing() {
+      rx += (mx - rx) * 0.10;
+      ry += (my - ry) * 0.10;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+
+    // Hide native cursor
+    document.documentElement.style.cursor = 'none';
+  })();
+
+
+  // ── 3. SCROLL REVEAL ────────────────────────────────
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+
+  // ── 4. ANIMATED COUNTERS ────────────────────────────
+  function animateCounter(el) {
+    const target = parseInt(el.textContent.replace('+', '').replace(',', ''));
+    const hasPlus = el.textContent.includes('+');
+    const duration = 1200;
+    const start = performance.now();
+
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      el.textContent = current + (hasPlus ? '+' : '');
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
+
+
+  // ── 5. SKILL BAR ANIMATION ──────────────────────────
+  let skillsAnimated = false;
+
+  function animateSkillBars() {
+    document.querySelectorAll('.skill-fill').forEach((bar, i) => {
+      setTimeout(() => {
+        bar.style.width = bar.getAttribute('data-width') + '%';
+      }, i * 80);
+    });
+  }
+
+
+  // ── 6. SCROLL SPY + SECTION OBSERVER ────────────────
+  const sections = document.querySelectorAll('.page');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+
+        if (id === 'facts' && !skillsAnimated) {
+          skillsAnimated = true;
+          setTimeout(animateSkillBars, 200);
+        }
+
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+
+  // ── 7. CARD 3-D TILT ────────────────────────────────
+  document.querySelectorAll('.card, .project-card, .achievement-card, .stat-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width  / 2;
+      const cy = rect.top  + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width  / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      const tiltX = dy * -5;
+      const tiltY = dx *  5;
+      card.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-3px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1)';
+      setTimeout(() => { card.style.transition = ''; }, 500);
+    });
+  });
+
+
+  // ── 8. MAGNETIC BUTTONS ─────────────────────────────
+  document.querySelectorAll('.btn, .btn-send, .btn-primary, .btn-outline').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const dx = e.clientX - (rect.left + rect.width  / 2);
+      const dy = e.clientY - (rect.top  + rect.height / 2);
+      btn.style.transform = `translate(${dx * 0.22}px, ${dy * 0.22}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+      btn.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)';
+      setTimeout(() => { btn.style.transition = ''; }, 400);
+    });
+  });
+
+
+  // ── 9. SCROLL TO TOP ────────────────────────────────
+  document.querySelector('.scroll-top')
+    .addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+
+  // ── 10. SIDEBAR NAV SMOOTH SCROLL ───────────────────
+  document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+
+  // ── 11. TYPING EFFECT on home greeting ──────────────
+  (function () {
+    const el = document.querySelector('.home-greeting');
+    if (!el) return;
+    const phrases = [
+      'Welcome to my portfolio',
+      'Electronics Engineer',
+      'Python Developer',
+      'Always building something',
+    ];
+    let pi = 0, ci = 0, deleting = false;
+    el.style.cssText += 'white-space:nowrap; overflow:hidden;';
+
+    function type() {
+      const phrase = phrases[pi];
+      if (!deleting) {
+        el.textContent = phrase.slice(0, ++ci);
+        if (ci === phrase.length) {
+          deleting = true;
+          setTimeout(type, 1800);
+          return;
+        }
+      } else {
+        el.textContent = phrase.slice(0, --ci);
+        if (ci === 0) {
+          deleting = false;
+          pi = (pi + 1) % phrases.length;
+        }
+      }
+      setTimeout(type, deleting ? 42 : 72);
+    }
+    type();
+  })();
+
   </script>
 
 </body>
